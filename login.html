@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <form id="loginForm">
+      <div class="formHeader">Login</div>
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button class="loginButton" type="submit">Login</button>
+      <a href="register.html">Go to Register</a>
+    </form>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const user = localStorage.getItem(username);
+          console.log(user);
+
+          if (user) {
+            const parsedUser = JSON.parse(user);
+            if (parsedUser.password === password) {
+              localStorage.setItem("user", JSON.stringify(parsedUser));
+              window.location.href = "index.html";
+            } else {
+              alert("Incorrect password");
+            }
+          } else {
+            alert("User not found");
+          }
+        });
+    </script>
+  </body>
+</html>

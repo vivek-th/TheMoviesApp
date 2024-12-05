@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Dashboard</title>
+    <style>
+      :root {
+        --primary-color: #8c3030;
+        --secondary-color: #f0f2a7;
+        --tertiary-color: #d9756c;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url(bgmovie.jpg);
+        font-family: Arial, sans-serif;
+      }
+      .dashboard {
+        width: 400px;
+        padding: 20px;
+        background-color: var(--secondary-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .dashboard input {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .dashboard button {
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+      }
+      .dashboardHeading {
+        color: var(--primary-color);
+        text-align: center;
+      }
+      a {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard">
+      <h2 class="dashboardHeading">User Dashboard</h2>
+
+      <input type="text" id="name" placeholder="Name" />
+      <input type="text" id="username" placeholder="Username" disabled />
+      <input type="password" id="password" placeholder="Password" />
+      <button id="updateButton">Update Details</button>
+      <a href="index.html">Back to Movies</a>
+    </div>
+
+    <script>
+      const user = JSON.parse(localStorage.getItem("user"));
+      const keyUser = localStorage.getItem(username);
+
+      if (user) {
+        document.getElementById("name").value = user.name;
+        document.getElementById("username").value = user.username;
+        document.getElementById("password").value = user.password;
+      } else {
+        alert("No user data found in local storage!");
+      }
+
+      document
+        .getElementById("updateButton")
+        .addEventListener("click", function () {
+          const updatedName = document.getElementById("name").value;
+          const updatedPassword = document.getElementById("password").value;
+
+          if (!updatedName || !updatedPassword) {
+            alert("Name and Password cannot be empty!");
+            return;
+          }
+
+          const updatedUser = {
+            name: updatedName,
+            username: user.username, //non chnging
+            password: updatedPassword,
+          };
+
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          localStorage.setItem(user.username, JSON.stringify(updatedUser));
+
+          alert("Details updated successfully!");
+        });
+    </script>
+  </body>
+</html>

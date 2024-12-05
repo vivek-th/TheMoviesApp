@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      :root {
+        --primary-color: #8c3030;
+        --secondary-color: #f0f2a7;
+        --tertiary-color: #d9756c;
+      }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: var(--primary-color);
+        color:var(--secondary-color);
+      }
+
+      .app-name {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+
+      #form {
+        display: flex;
+        align-items: right;
+        position: relative;
+      }
+
+      .search {
+        padding: 8px;
+        font-size: 1em;
+        border-radius: 20px;
+        width: 250px;
+      
+        
+      }
+
+      .search:focus {
+        outline: 2px solid white    ;
+      }
+
+      .header-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      #logoutButton,
+      #dashboardLink {
+        background-color: var(--tertiary-color);
+        border: none;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        text-decoration: none;
+        width: 130px;
+        font-size: 1em;
+      }
+
+      #logoutButton:hover,
+      #dashboardLink:hover {
+        background-color:#e9877e
+      }
+
+      #dashboardLink a {
+        text-decoration: none;
+        color: white;
+      }
+
+      .icon {
+        font-size: 1.2em;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="app-name">Movie App</div>
+      <form id="form">
+        <input type="text" id="search" class="search" placeholder="Search..." />
+      </form>
+      <div class="header-buttons">
+        <button id="logoutButton" class="hidden">
+          <span class="icon">🔒</span> Logout
+        </button>
+        <button id="dashboardLink" class="hidden">
+          <span class="icon">🏠</span>
+          <a href="dashboard.html">Dashboard</a>
+        </button>
+      </div>
+    </header>
+
+    <div id="welcomeMessage">
+      <h1>Hello</h1>
+    </div>
+    <main id="main">
+      <div class="movie">
+        <img src="moviepic.jpg" alt="" />
+        <div class="movie-info">
+          <h3>Movie Title</h3>
+          <span>9.8</span>
+        </div>
+        <div class="overview">
+          <h3>Overview</h3>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa qui
+          veniam, adipisci libero suscipit facilis molestiae expedita. Fugiat
+          natus ut totam autem sunt aperiam qui soluta quisquam, quasi alias
+          necessitatibus!
+        </div>
+      </div>
+    </main>
+    <script>
+      const user = localStorage.getItem("user");
+      if (user) {
+        const parsedUser = JSON.parse(user);
+        document.getElementById(
+          "welcomeMessage"
+        ).innerHTML = `Hello ${parsedUser.name}, Hunt your fav movies!`;
+        document.getElementById("logoutButton").classList.remove("hidden");
+        document.getElementById("dashboardLink").classList.remove("hidden");
+      } else {
+        document.getElementById(
+          "welcomeMessage"
+        ).innerHTML = `Hello User, please <a href='login.html'>login</a>`;
+    
+
+      }
+
+      document
+        .getElementById("logoutButton")
+        .addEventListener("click", function () {
+          localStorage.removeItem("user");
+          window.location.href = "login.html";
+        });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
