@@ -1,0 +1,41 @@
+:root {
+    --primary-color: #8c3030;
+    --secondary-color: #f0f2a7;
+    --tertiary-color: #d9756c;
+  }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(movieBg.jpg);
+ 
+}
+form {
+  width: 500px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--secondary-color);
+  
+}
+input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.formHeader{
+   color: var(--primary-color);
+   font-weight: bold;
+   text-align: center;
+   font-size: 30px;
+}
+.loginButton{
+    background-color:var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 25px;
+    font-size:medium;
+    width: 100px;
+    height: 30px;
+    justify-content: left;
+    margin: 10px;
+}
